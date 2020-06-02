@@ -1,20 +1,32 @@
+import matplotlib.pyplot as plt
 f = open("input.txt", "r")
 f_out = open("output.txt", "w")
-
 file_content = f.read()
 
-count_a = 0
+vokal_array = ['a', 'e', 'i', 'o', 'u', 'y']
+n = len(vokal_array)
+telle_array = [0]*n
 
 for i in file_content:
-	if (i == 'a') or (i == 'A'):
-		count_a = count_a + 1;
-	
-f_out.write("A or a: ")
-f_out.write(str(count_a))
-f_out.write("\n")
+	index = 0
+	for k in vokal_array:
+		if (i.lower() == k):
+			telle_array[index] = telle_array[index] + 1
+		index = index + 1
+
+index = 0
+for k in vokal_array:		
+	f_out.write(k)
+	f_out.write(": ")
+	f_out.write(str(telle_array[index]))
+	f_out.write("\n")
+	index = index + 1
  
 f.close()
 f_out.close()
+
+plt.bar(vokal_array,telle_array)
+plt.show()
 print("Successful")
 #f = open("input.txt","r") #Åpne fila vi skal telle vokaler i med lesetilgang
 #
